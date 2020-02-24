@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-demo/demo-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-demo/spring-a" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-demo/spring-b" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-demo/spring-c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-netty" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-tc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-tm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-tracing" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-txmsg" charset="UTF-8" />
+  </component>
+</project>

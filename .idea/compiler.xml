@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo-common" />
+        <module name="spring-a" />
+        <module name="spring-b" />
+        <module name="spring-c" />
+        <module name="tx-common" />
+        <module name="tx-netty" />
+        <module name="tx-tc" />
+        <module name="tx-tm" />
+        <module name="tx-tracing" />
+        <module name="tx-txmsg" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo-common" options="-Xlint:deprecation" />
+      <module name="spring-a" options="-Xlint:deprecation" />
+      <module name="spring-b" options="-Xlint:deprecation" />
+      <module name="spring-c" options="-Xlint:deprecation" />
+      <module name="tx-common" options="-Xlint:deprecation" />
+      <module name="tx-demo" options="-Xlint:deprecation" />
+      <module name="tx-lcn" options="-Xlint:deprecation" />
+      <module name="tx-netty" options="-Xlint:deprecation" />
+      <module name="tx-tc" options="-Xlint:deprecation" />
+      <module name="tx-tm" options="-Xlint:deprecation" />
+      <module name="tx-tracing" options="-Xlint:deprecation" />
+      <module name="tx-txmsg" options="-Xlint:deprecation" />
+    </option>
+  </component>
+</project>
