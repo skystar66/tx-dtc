@@ -13,12 +13,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import static com.xuliang.lcn.utils.RedisKeyUtils.REDIS_TOKEN_PREFIX;
 
 @Component
 @Data
@@ -195,4 +194,34 @@ public class RedisStorage implements FastStorage {
         log.debug("remove group:{} from redis.", groupId);
         redisTemplate.delete(RedisKeyUtils.REDIS_GROUP_PREFIX + groupId);
     }
+
+
+    @Override
+    public void saveToken(String token) {
+        Objects.requireNonNull(token);
+        redisTemplate.opsForList().leftPush(REDIS_TOKEN_PREFIX, token);
+        redisTemplate.expire(REDIS_TOKEN_PREFIX, 20, TimeUnit.MINUTES);
+
+        Long size = redisTemplate.opsForList().size(REDIS_TOKEN_PREFIX);
+        if (Objects.nonNull(size) && size > 3) {
+            redisTemplate.opsForList().rightPop(REDIS_TOKEN_PREFIX);
+        }
+    }
+
+    @Override
+    public List<String> findTokens() {
+        Long size = redisTemplate.opsForList().size(REDIS_TOKEN_PREFIX);
+        if (Objects.isNull(size)) {
+            return Collections.emptyList();
+        }
+        return Objects.requireNonNull(redisTemplate.opsForList().range(REDIS_TOKEN_PREFIX, 0, size))
+                .stream()
+                .map(Object::toString).collect(Collectors.toList());
+    }
+
+    @Override
+    public void removeToken(String token) {
+        redisTemplate.delete(REDIS_TOKEN_PREFIX);
+    }
+
 }

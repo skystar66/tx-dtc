@@ -10,6 +10,8 @@ public class RedisKeyUtils {
     public static final String REDIS_GROUP_PREFIX = "tm:group:";
 
 
+    public static final String REDIS_TOKEN_PREFIX = "tm.token";
+
     //事务组状态
     public static final String REDIS_GROUP_STATE = REDIS_GROUP_PREFIX + "transactionState:";
 }

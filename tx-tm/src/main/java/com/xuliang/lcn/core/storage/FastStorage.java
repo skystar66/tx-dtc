@@ -113,4 +113,35 @@ public interface FastStorage {
 
     void clearGroup(String groupId) throws Exception;
 
+
+
+
+    /*-----------------------admin token------------------------------*/
+
+    /**
+     * save token
+     *
+     * @param token token
+     * @throws FastStorageException fastStorageException
+     */
+    void saveToken(String token) throws Exception;
+
+    /**
+     * find all token
+     *
+     * @return list
+     * @throws FastStorageException fastStorageException
+     */
+    List<String> findTokens() throws Exception;
+
+    /**
+     * delete token
+     *
+     * @param token token
+     * @throws FastStorageException fastStorageException
+     */
+    void removeToken(String token) throws Exception;
+
+
+
 }
