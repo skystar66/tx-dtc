@@ -94,7 +94,7 @@ public class TracingContext {
         if (hasGroup()) {
             return;
         }
-        //初始化事务组
+        //初始化事务组，生成 groupId
         init(Maps.newHashMap(TracingConstants.GROUP_ID,
                 String.valueOf(SnowflakeIdWorker.getInstance().nextId()),
                 TracingConstants.APP_MAP, "{}"));

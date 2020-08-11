@@ -8,6 +8,7 @@
     <file url="file://$PROJECT_DIR$/tx-demo/spring-a" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tx-demo/spring-b" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tx-demo/spring-c" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tx-logger" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tx-netty" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tx-tc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tx-tm" charset="UTF-8" />

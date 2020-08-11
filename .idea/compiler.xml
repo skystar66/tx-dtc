@@ -12,6 +12,7 @@
         <module name="spring-b" />
         <module name="spring-c" />
         <module name="tx-common" />
+        <module name="tx-logger" />
         <module name="tx-netty" />
         <module name="tx-tc" />
         <module name="tx-tm" />
@@ -29,6 +30,7 @@
       <module name="tx-common" options="-Xlint:deprecation" />
       <module name="tx-demo" options="-Xlint:deprecation" />
       <module name="tx-lcn" options="-Xlint:deprecation" />
+      <module name="tx-logger" options="-Xlint:deprecation" />
       <module name="tx-netty" options="-Xlint:deprecation" />
       <module name="tx-tc" options="-Xlint:deprecation" />
       <module name="tx-tm" options="-Xlint:deprecation" />

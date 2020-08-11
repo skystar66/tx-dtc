@@ -4,7 +4,7 @@ import com.xuliang.lcn.support.TxLcnManagerBanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.xuliang.*"})
+@SpringBootApplication(scanBasePackages = {"com.xuliang.*","com.xuliang.logger.*"})
 public class TMApplication {
 
 

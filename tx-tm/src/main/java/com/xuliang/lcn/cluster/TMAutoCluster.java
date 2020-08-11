@@ -56,6 +56,7 @@ public class TMAutoCluster implements TxLcnInitializer {
                 !tmProperties.getHost().equals(txManagerConfig.getHost()) ||
                         !tmProperties.getTransactionPort().equals(txManagerConfig.getPort()))
                 .collect(Collectors.toList());
+        log.info("TM Server Info List ： {}", tmList);
         for (TMProperties properties : tmList) {
             NotifyConnectParams notifyConnectParams = new NotifyConnectParams();
             notifyConnectParams.setHost(txManagerConfig.getHost());

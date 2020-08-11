@@ -25,6 +25,15 @@ public class Transactions {
 
 
 
+    /////////// 常量 //////////////////////
+
+    public static final String TE = "Transaction Error";
+
+    public static final String TAG_TRANSACTION = "Transaction";
+
+    public static final String TAG_TASK = "Transaction Task";
+
+
     /**
      * 方法签名生成事务单元ID
      *

@@ -3,6 +3,7 @@ package com.xuliang.lcn.server;
 
 import com.xuliang.lcn.txmsg.MessageConstants;
 import com.xuliang.lcn.txmsg.dto.MessageDto;
+import com.xuliang.lcn.txmsg.params.NotifyConnectParams;
 import com.xuliang.lcn.txmsg.params.NotifyUnitParams;
 
 import java.io.Serializable;
@@ -75,4 +76,20 @@ public class MessageCreator {
         msg.setData(notifyUnitParams);
         return msg;
     }
+
+    /**
+     * 通知TxClient连接
+     *
+     * @param notifyConnectParams notifyConnectParams
+     * @return MessageDto
+     */
+    public static MessageDto newTxManager(NotifyConnectParams notifyConnectParams) {
+        MessageDto msg = new MessageDto();
+        msg.setAction(MessageConstants.ACTION_NEW_TXMANAGER);
+        msg.setData(notifyConnectParams);
+        return msg;
+    }
+
+
+
 }

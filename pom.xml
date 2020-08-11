@@ -16,6 +16,7 @@
         <module>tx-tc</module>
         <module>tx-tracing</module>
         <module>tx-demo</module>
+        <module>tx-com.xuliang.logger</module>
     </modules>
 
 
@@ -147,7 +148,7 @@
 
             <!--<dependency>-->
                 <!--<groupId>com.codingapi.txlcn</groupId>-->
-                <!--<artifactId>txlcn-logger</artifactId>-->
+                <!--<artifactId>txlcn-com.xuliang.logger</artifactId>-->
                 <!--<version>${codingapi.txlcn.version}</version>-->
             <!--</dependency>-->
 

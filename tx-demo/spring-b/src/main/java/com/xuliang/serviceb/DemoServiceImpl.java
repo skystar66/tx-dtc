@@ -29,6 +29,12 @@ public class DemoServiceImpl implements DemoService {
         this.demoMapper = demoMapper;
     }
 
+
+    @Override
+    public String rpcs(String value) {
+        return rpc(value);
+    }
+
     @Override
     @LcnTransaction(propagation = DTXPropagation.REQUIRED)
     @Transactional

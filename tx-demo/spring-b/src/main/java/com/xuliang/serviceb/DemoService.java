@@ -9,4 +9,5 @@ package com.xuliang.serviceb;
 public interface DemoService {
     
     String rpc(String value);
+    String rpcs(String value);
 }

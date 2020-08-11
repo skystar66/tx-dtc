@@ -1,6 +1,7 @@
 package com.xuliang.tracing.http;
 
 import com.xuliang.tracing.Tracings;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.core.annotation.Order;
@@ -25,6 +26,7 @@ import java.util.Objects;
 @ConditionalOnClass(RestTemplate.class)
 @Component
 @Order
+@Slf4j
 public class RestTemplateTracingTransmitter implements ClientHttpRequestInterceptor {
 
 
@@ -41,6 +43,7 @@ public class RestTemplateTracingTransmitter implements ClientHttpRequestIntercep
 
     @Override
     public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
+        log.info("调用 ribbon 远程接口服务 ");
         Tracings.transmit(httpRequest.getHeaders()::add);
         return clientHttpRequestExecution.execute(httpRequest, bytes);
     }

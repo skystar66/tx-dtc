@@ -69,4 +69,9 @@ public class MessageConstants {
      * 写异常记录
      */
     public static final String ACTION_WRITE_EXCEPTION = "writeException";
+
+
+    /**通知建立连接*/
+    public static final String ACTION_NEW_TXMANAGER = "ntm";
+
 }

@@ -5,6 +5,7 @@ import com.xuliang.tracing.Tracings;
 import feign.Feign;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,14 @@ import org.springframework.stereotype.Component;
 @ConditionalOnClass(Feign.class)
 @Component
 @Order
+@Slf4j
 public class FeignTracingTransmitter implements RequestInterceptor {
 
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
+
+        log.info("调用 feign 远程接口服务 ");
         Tracings.transmit(requestTemplate::header);
     }
 }

@@ -20,8 +20,8 @@ public class DefaultGlobalContext implements TCGlobalContext {
         // 事务发起方判断
         txContext.setDtxStart(!TracingContext.tracing().hasGroup());
         if (txContext.isDtxStart()) {
-            log.info("开启事务 groupId：{} ", TracingContext.tracing().groupId());
             TracingContext.tracing().beginTransactionGroup();
+            log.info("开启事务 groupId：{} ", TracingContext.tracing().groupId());
         } else {
             log.info("参与事务 groupId：{} ", TracingContext.tracing().groupId());
         }

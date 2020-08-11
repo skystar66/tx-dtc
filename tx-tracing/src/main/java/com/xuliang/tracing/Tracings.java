@@ -34,7 +34,7 @@ public class Tracings {
     public static void apply(TracingGetter tracingGetter) {
         String groupId = Optional.ofNullable(tracingGetter.get(TracingConstants.HEADER_KEY_GROUP_ID)).orElse("");
         String appList = Optional.ofNullable(tracingGetter.get(TracingConstants.HEADER_KEY_APP_MAP)).orElse("");
-        log.info("Tracings apply  call init method");
+        log.info("Tracings apply  call init method groupId : {}", groupId);
         TracingContext.init(Maps.newHashMap(TracingConstants.GROUP_ID, groupId, TracingConstants.APP_MAP,
                 StringUtils.isEmpty(appList) ? appList : new String(Base64Utils.decodeFromString(appList), StandardCharsets.UTF_8)));
         if (TracingContext.tracing().hasGroup()) {
