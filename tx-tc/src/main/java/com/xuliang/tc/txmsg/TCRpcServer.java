@@ -6,6 +6,7 @@ import com.xuliang.lcn.txmsg.RpcConfig;
 import com.xuliang.lcn.txmsg.dto.TxManagerHost;
 import com.xuliang.tc.config.TxClientConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
  * @desc:客户端
  */
 @Component
+@Order(1)
 public class TCRpcServer implements TxLcnInitializer {
 
     @Autowired

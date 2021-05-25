@@ -87,6 +87,9 @@ public class NettyRpcClientInitializer implements RpcClientInitializer, Disposab
                         ex2.printStackTrace();
                     }
                 }
+            }else {
+                log.info("Alread connect TM Server Address: {}", socketAddress.toString());
+
             }
             // 忽略已连接的连接
             return Optional.empty();

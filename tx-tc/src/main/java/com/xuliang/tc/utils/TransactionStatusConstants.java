@@ -34,4 +34,10 @@ public class TransactionStatusConstants {
     public static final Short TXC_UNDO_ERROR = 4;
 
 
+
+    /**
+     * 近端缓存中，每个缓存写入多久后过期 10分钟
+     */
+    public static final int WRITE_AFTER_EXPIRE_TIME = 15 * 60 * 1000;
+
 }

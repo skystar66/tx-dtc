@@ -65,7 +65,7 @@ public class NettyRpcServerInitializer implements RpcServerInitializer, Disposab
             } else {
                 b.bind(port);
             }
-            log.info("Netty Socket Success started on {}:{} ",
+            log.info("Netty Socket Success Started Server:{}:{} ",
                     StringUtils.hasText(managerProperties.getRpcHost()) ? managerProperties.getRpcHost() : "0.0.0.0", port);
 
         } catch (Exception e) {
@@ -75,6 +75,9 @@ public class NettyRpcServerInitializer implements RpcServerInitializer, Disposab
 
     }
 
+    /**
+     * 销毁线程组
+     */
     @Override
     public void destroy() throws Exception {
         if (workerGroup != null) {
@@ -84,6 +87,6 @@ public class NettyRpcServerInitializer implements RpcServerInitializer, Disposab
             bossGroup.shutdownGracefully();
         }
 
-        log.info("server was down.");
+        log.info("server stopped success!!!");
     }
 }

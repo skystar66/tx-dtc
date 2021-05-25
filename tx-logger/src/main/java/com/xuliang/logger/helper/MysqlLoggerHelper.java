@@ -29,6 +29,7 @@ import org.apache.commons.dbutils.RowProcessor;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ import java.util.Objects;
  *
  * @author codingapi
  */
+@Order(3)
 public class MysqlLoggerHelper implements TxLcnLogDbHelper {
 
     /**

@@ -1,0 +1,2 @@
+DubboConsumerTransactionFilter=com.xuliang.tracing.rpc.dubbo.DubboConsumerRpcTransactionInterceptor
+DubboProviderTransactionFilter=com.xuliang.tracing.rpc.dubbo.DubboProviderRpcTransactionInterceptor

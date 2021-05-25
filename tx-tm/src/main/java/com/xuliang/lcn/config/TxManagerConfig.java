@@ -44,7 +44,7 @@ public class TxManagerConfig {
     /**
      * netty heart check time (ms) 20s 心跳检测一次
      */
-    private long heartTime = 20 * 1000;
+    private long heartTime = 60 * 60 * 1000;
 
     /**
      * 事务处理并发等级 核心线程池数量

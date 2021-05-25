@@ -45,7 +45,7 @@ public class LCNServiceExecutor {
         DTXPropagationState propagationState = dtxPropagationResolver.resolvePropagationState(info);
         // 获取本地分布式事务控制器
         LCNLocalControl dtxLocalControl = txLcnBeanHelper.loadDTXLocalControl(transactionType, propagationState);
-        //当事务等级为supports 时，表示不加入事物
+        //当事务等级为 supports 时，表示不加入事物
         if (dtxLocalControl == null) {
             return info.getBusinessCallback().call();
         }
@@ -61,10 +61,11 @@ public class LCNServiceExecutor {
             //执行业务
             Object result = dtxLocalControl.doBusinessCode(info);
             //业务执行成功
-            log.info(" groupId : {} unitId: {} business success ,result : {}", transactionType, result);
+            log.info(" groupId : {} unitId: {} business success ,result : {}",info.getGroupId(),info.getUnitId(), result);
             dtxLocalControl.onBusinessCodeSuccess(info, result);
             return result;
         } catch (Exception e) {
+            //业务执行失败
             log.error(" groupId : {} unitId: {} before business code error: {}", info.getGroupId(), info.getUnitId(), e);
             dtxLocalControl.onBusinessCodeError(info, e);
             throw e;

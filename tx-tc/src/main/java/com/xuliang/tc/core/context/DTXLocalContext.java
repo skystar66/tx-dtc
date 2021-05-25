@@ -53,7 +53,7 @@ public class DTXLocalContext {
     }
 
     /**
-     * 事务组
+     * 事务组id
      */
     private String groupId;
 

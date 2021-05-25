@@ -85,8 +85,7 @@ public class LCNTransactionManager {
             notifyUnitParams.setState(transactionState);
             notifyUnitParams.setUnitId(transactionUnit.getUnitId());
             notifyUnitParams.setUnitType(transactionUnit.getUnitType());
-            log.info(groupId, notifyUnitParams.getUnitId(), "notify TM's unit: {}",
-                    transactionUnit.getUnitId());
+            log.info("groupId:{} notify TM's unit:{}",groupId,transactionUnit.getUnitId());
             try {
                 //获取远程标识
 //                String remoteKey = rpcClient.loadRemoteKey();
@@ -97,10 +96,12 @@ public class LCNTransactionManager {
                     throw new Exception("offline mod.");
                 }
                 log.info("remote channel key : {}", modChannelKeys);
+                //todo 如果失败，增加重试策略 ，超出次数，添加到数据库中，进行展示
                 MessageDto respMsg =
                         rpcClient.request(modChannelKeys.get(0), MessageCreator.notifyUnit(notifyUnitParams));
                 if (!MessageUtils.statusOk(respMsg)) {
                     // 提交/回滚失败的消息处理 记录在本地数据库中 admin页面展示
+                    //
                 }
             } catch (Exception e) {
                 // 记录在本地数据库中

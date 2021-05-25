@@ -56,7 +56,8 @@ public class TCRpcConnectInitCallBack implements ClientInitCallBack {
     public void connected(String remoteKey) {
         new Thread(() -> {
             try {
-                log.info("Send init message to TM[{}]", remoteKey);
+                //todo 这一步完全多余，可以直接在创建连接时，进行注册！
+                log.info("Send  Register message to TM[{}]", remoteKey);
                 MessageDto msg = rpcClient.request(remoteKey, MessageCreator.initClient(applicationName), 5000);
 
                 if (MessageUtils.statusOk(msg)) {
@@ -67,6 +68,7 @@ public class TCRpcConnectInitCallBack implements ClientInitCallBack {
                     // 2. 日志
                     log.info("Finally, determined dtx time is {}ms, tm rpc timeout is {} ms",
                             resParams.getDtxTime(), resParams.getTmRpcTimeout());
+                    log.info("Send  Seacher TM Cluster message to TM[{}]", remoteKey);
                     // 3. 搜索TM 集群信息
                     autoTMClusterEngine.searchTMCluster(remoteKey);
                     return;

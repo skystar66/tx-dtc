@@ -13,8 +13,6 @@ import com.xuliang.tc.core.enums.DTXPropagationState;
 public interface DTXPropagationResolver {
 
 
-
-
     /**
      * 判断事务状态
      *
@@ -23,8 +21,5 @@ public interface DTXPropagationResolver {
      * @throws TransactionException TransactionException
      */
     DTXPropagationState resolvePropagationState(TxTransactionInfo txTransactionInfo) throws Exception;
-
-
-
 
 }

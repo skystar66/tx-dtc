@@ -2,8 +2,8 @@ package com.xuliang.tc.core.context;
 
 
 import com.xuliang.tc.aspect.TransactionInfo;
-import com.xuliang.tc.aspect.enums.DTXPropagation;
-import com.xuliang.tc.aspect.weave.BusinessCallback;
+import com.xuliang.tc.enums.DTXPropagation;
+import com.xuliang.tc.aspect.callback.BusinessCallback;
 import lombok.Data;
 
 import java.lang.reflect.Method;
@@ -50,7 +50,7 @@ public class TxTransactionInfo {
     private Method pointMethod;
 
     /**
-     * 事务单元职责
+     * 事务传播级别
      */
     private DTXPropagation propagation;
 

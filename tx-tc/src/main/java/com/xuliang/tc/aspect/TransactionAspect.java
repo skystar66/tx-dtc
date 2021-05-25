@@ -1,10 +1,8 @@
 package com.xuliang.tc.aspect;
 
-
-import com.xuliang.lcn.common.util.Transactions;
 import com.xuliang.tc.annotation.LcnTransaction;
-import com.xuliang.tc.aspect.weave.DTXLogicWeaver;
 import com.xuliang.tc.config.TxClientConfig;
+import com.xuliang.tc.manager.TransactionManager;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,7 +13,7 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 /**
- * LCN 事务拦截器
+ * LCN 事务拦截器，注解方式
  * create by xuliang on 2018/1/5
  */
 @Aspect
@@ -24,13 +22,11 @@ import org.springframework.stereotype.Component;
 public class TransactionAspect implements Ordered {
 
 
-
-
     @Autowired
     private TxClientConfig txClientConfig;
 
     @Autowired
-    private DTXLogicWeaver dtxLogicWeaver;
+    private TransactionManager transactionManager;
 
 
     /**
@@ -45,7 +41,7 @@ public class TransactionAspect implements Ordered {
 
     @Around("lcnTransactionPointcut()")
     public Object runWithLcnTransaction(ProceedingJoinPoint point) throws Throwable {
-        log.info("come in get around pointcut lcn tx");
+        log.info("Aspect Come in Get around pointcut lcn tx");
         //根据ProceedingJoinPoint 从缓存中获取事务信息
         DTXInfo dtxInfo = DTXInfo.getFromCache(point);
         //获取注解
@@ -55,7 +51,7 @@ public class TransactionAspect implements Ordered {
         //设置事务传播行为，发起方是REQUIRED，参与方式是SUPPORTS
         dtxInfo.setDtxPropagation(lcnTransaction.propagation());
         //开始执行事务
-        return dtxLogicWeaver.runTransaction(dtxInfo, point::proceed);
+        return transactionManager.runTransaction(dtxInfo, point::proceed);
     }
 
 

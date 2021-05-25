@@ -16,6 +16,7 @@
         <module>spring-b</module>
         <module>spring-c</module>
         <module>demo-common</module>
+        <module>spring-eureka-demo</module>
     </modules>
 
 

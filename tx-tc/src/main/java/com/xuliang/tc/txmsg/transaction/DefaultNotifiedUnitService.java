@@ -36,15 +36,16 @@ public class DefaultNotifiedUnitService implements RpcExecuteService {
 
         NotifyUnitParams notifyUnitParams = transactionCmd.getMsg().loadBean(NotifyUnitParams.class);
         // 保证业务线程执行完毕后执行事物清理操作
-        TxContext txContext = globalContext.txContext(notifyUnitParams.getGroupId());
-        if (Objects.nonNull(txContext)) {
-            synchronized (txContext.getLock()) {
-                log.info(
-                        " groupId: {} unitId: {} clean transaction cmd waiting for business code finish."
-                        , transactionCmd.getGroupId(), notifyUnitParams.getUnitId() );
-                txContext.getLock().wait();
-            }
-        }
+//        TxContext txContext = globalContext.txContext(notifyUnitParams.getGroupId());
+        //todo 此处暂时注释掉，因为该段代码是 只有事物提交或回滚之后 才会进入， 无需加锁，只要该方法，表示业务代码 已经全部执行完成
+//        if (Objects.nonNull(txContext)) {
+//            synchronized (txContext.getLock()) {
+//                log.info(
+//                        " groupId: {} unitId: {} clean transaction cmd waiting for business code finish."
+//                        , transactionCmd.getGroupId(), notifyUnitParams.getUnitId() );
+//                txContext.getLock().wait();
+//            }
+//        }
         // 事物清理操作
         transactionCleanTemplate.clean(
                 notifyUnitParams.getGroupId(),

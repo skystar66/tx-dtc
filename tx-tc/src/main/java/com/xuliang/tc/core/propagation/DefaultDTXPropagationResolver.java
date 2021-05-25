@@ -1,6 +1,6 @@
 package com.xuliang.tc.core.propagation;
 
-import com.xuliang.tc.aspect.enums.DTXPropagation;
+import com.xuliang.tc.enums.DTXPropagation;
 import com.xuliang.tc.core.context.DTXLocalContext;
 import com.xuliang.tc.core.context.TxTransactionInfo;
 import com.xuliang.tc.core.enums.DTXPropagationState;

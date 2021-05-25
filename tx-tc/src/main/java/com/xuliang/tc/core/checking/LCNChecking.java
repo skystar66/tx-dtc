@@ -106,7 +106,7 @@ public class LCNChecking {
     public void stopDelayChecking(String groupId, String unitId) {
         ScheduledFuture scheduledFuture = delayTasks.get(groupId + unitId);
         if (Objects.nonNull(scheduledFuture)) {
-            log.info("cancel {}:{} checking.", groupId, unitId);
+            log.info("stop checking task groupId:{},unitId:{} checking.", groupId, unitId);
             scheduledFuture.cancel(true);
             delayTasks.remove(groupId + unitId);
         }

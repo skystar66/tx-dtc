@@ -2,7 +2,7 @@ package com.xuliang.tc.aspect;
 
 
 import com.xuliang.lcn.common.util.Transactions;
-import com.xuliang.tc.aspect.enums.DTXPropagation;
+import com.xuliang.tc.enums.DTXPropagation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.aopalliance.intercept.MethodInvocation;

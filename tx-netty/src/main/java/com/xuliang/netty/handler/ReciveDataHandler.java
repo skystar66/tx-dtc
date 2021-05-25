@@ -30,7 +30,7 @@ public class ReciveDataHandler extends SimpleChannelInboundHandler<NettyRpcCmd> 
     protected void channelRead0(ChannelHandlerContext ctx, NettyRpcCmd cmd) throws Exception {
 
         String key = cmd.getKey();
-        log.info("cmd->{}", cmd);
+        log.info("recive->cmd->{}", cmd);
         //心态数据包直接响应
         if (cmd.getMsg() != null &&
                 MessageConstants.ACTION_HEART_CHECK.equals(cmd.getMsg().getAction())) {
@@ -45,7 +45,6 @@ public class ReciveDataHandler extends SimpleChannelInboundHandler<NettyRpcCmd> 
         if (!StringUtils.isEmpty(key)) {
             RpcContent rpcContent = cmd.loadRpcContent();
             if (rpcContent != null) {
-                log.info("got response message[Netty Handler]");
                 rpcContent.setRes(cmd.getMsg());
                 rpcContent.signal();
             } else {

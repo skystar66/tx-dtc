@@ -3,7 +3,7 @@ package com.xuliang.tc.core.template;
 
 import com.xuliang.tc.core.checking.LCNChecking;
 import com.xuliang.tc.core.context.TCGlobalContext;
-import com.xuliang.tc.core.template.clean.TransactionCleanService;
+import com.xuliang.tc.core.clean.TransactionCleanService;
 import com.xuliang.tc.support.TxLcnBeanHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class TransactionCleanTemplate {
      * @throws TransactionClearException TransactionClearException
      */
     public void clean(String groupId, String unitId, String unitType, int state) throws Exception {
-        log.info("groupI: {} unitId: {} clean transaction", groupId, unitId);
+        log.info("groupId: {} unitId: {} clean transaction", groupId, unitId);
         try {
             cleanLCNTransation(groupId, unitId, unitType, state);
         } catch (Exception e) {

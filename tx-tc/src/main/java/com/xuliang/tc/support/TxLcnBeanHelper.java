@@ -37,7 +37,7 @@ public class TxLcnBeanHelper {
     /**
      * LCNLocalControl bean 名称格式
      * control_%s_%s
-     * transaction:前缀 %s:事务类型（lcn,tcc,txc） %s:事务状态(starting,running)
+     * transaction:前缀 %s:事务类型（lcn,tcc,txc） %s:事务状态(create,join)
      */
     private static final String CONTROL_BEAN_NAME_FORMAT = "control_%s_%s";
 

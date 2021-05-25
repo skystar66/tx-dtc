@@ -10,6 +10,7 @@ import com.xuliang.lcn.txmsg.params.NotifyConnectParams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -26,10 +27,11 @@ import java.util.stream.Collectors;
  * Date: 1/24/20
  *
  * @author xuliang
- * @desc:服务端：自动集群连接
+ * @desc:服务端：自动集群连接 //todo 后期改为zk ，自动服务发现
  */
 @Component
 @Slf4j
+@Order(2)
 public class TMAutoCluster implements TxLcnInitializer {
 
 
@@ -51,12 +53,13 @@ public class TMAutoCluster implements TxLcnInitializer {
 
     @Override
     public void init() throws Exception {
-        //通知 tc client 连接当前tm 服务
+        /**获取所有TM服务*/
         List<TMProperties> tmList = fastStorage.findTMProperties().stream().filter(tmProperties ->
                 !tmProperties.getHost().equals(txManagerConfig.getHost()) ||
                         !tmProperties.getTransactionPort().equals(txManagerConfig.getPort()))
                 .collect(Collectors.toList());
         log.info("TM Server Info List ： {}", tmList);
+        /**通知 tc client 连接当前tm 服务*/
         for (TMProperties properties : tmList) {
             NotifyConnectParams notifyConnectParams = new NotifyConnectParams();
             notifyConnectParams.setHost(txManagerConfig.getHost());
@@ -92,6 +95,7 @@ public class TMAutoCluster implements TxLcnInitializer {
             tmProperties.setHost(txManagerConfig.getHost());
             tmProperties.setTransactionPort(txManagerConfig.getPort());
             fastStorage.saveTMProperties(tmProperties);
+            log.info("Save Redis TM Server Success! Host:{},Port:{}",txManagerConfig.getHost(),txManagerConfig.getPort());
         }
         log.info("TMAutoCluster Started Success！！！");
     }

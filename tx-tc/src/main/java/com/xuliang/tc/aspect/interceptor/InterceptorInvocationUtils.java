@@ -4,7 +4,7 @@ package com.xuliang.tc.aspect.interceptor;
 import com.xuliang.lcn.common.util.Transactions;
 import com.xuliang.tc.annotation.LcnTransaction;
 import com.xuliang.tc.aspect.DTXInfo;
-import com.xuliang.tc.aspect.enums.DTXPropagation;
+import com.xuliang.tc.enums.DTXPropagation;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInvocation;
 

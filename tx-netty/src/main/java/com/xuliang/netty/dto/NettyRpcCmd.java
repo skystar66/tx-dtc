@@ -36,7 +36,6 @@ public class NettyRpcCmd extends RpcCmd {
     @Override
     public MessageDto loadResult() throws Exception {
         MessageDto messageDto = rpcContent.getRes();
-        log.info("got response. {} key : {} ", messageDto, getKey());
         return messageDto;
     }
 

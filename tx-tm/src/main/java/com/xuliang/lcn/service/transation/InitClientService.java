@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 
 /**
- * Description: 初始化客户端信息
+ * Description: 注册客户端信息
  * Company: CodingApi
  * Date: 2018/12/29
  *

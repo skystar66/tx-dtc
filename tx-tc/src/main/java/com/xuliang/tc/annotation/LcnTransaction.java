@@ -1,7 +1,7 @@
 package com.xuliang.tc.annotation;
 
 
-import com.xuliang.tc.aspect.enums.DTXPropagation;
+import com.xuliang.tc.enums.DTXPropagation;
 
 import java.lang.annotation.*;
 

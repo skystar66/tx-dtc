@@ -1,7 +1,7 @@
 package com.xuliang.tc.aspect.interceptor;
 
 import com.xuliang.tc.aspect.DTXInfo;
-import com.xuliang.tc.aspect.weave.DTXLogicWeaver;
+import com.xuliang.tc.manager.TransactionManager;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -9,15 +9,18 @@ import org.aopalliance.intercept.MethodInvocation;
 import java.util.Objects;
 import java.util.Properties;
 
+/**
+ * 事物方法拦截
+ */
 @Slf4j
 public class TxLcnInterceptor implements MethodInterceptor {
 
-    private final DTXLogicWeaver dtxLogicWeaver;
+    private final TransactionManager transactionManager;
 
     private Properties transactionAttributes;
 
-    public TxLcnInterceptor(DTXLogicWeaver dtxLogicWeaver) {
-        this.dtxLogicWeaver = dtxLogicWeaver;
+    public TxLcnInterceptor(TransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
     }
 
 
@@ -32,6 +35,6 @@ public class TxLcnInterceptor implements MethodInterceptor {
         if (Objects.isNull(dtxInfo)) {
             return null;
         }
-        return dtxLogicWeaver.runTransaction(dtxInfo, methodInvocation::proceed);
+        return transactionManager.runTransaction(dtxInfo, methodInvocation::proceed);
     }
 }

@@ -41,6 +41,7 @@ public class AutoTMClusterEngine {
             if (MessageUtils.statusOk(messageDto)) {
                 HashSet<String> hashSet = messageDto.loadBean(HashSet.class);
                 //连接TM集群
+                log.info("开始连接TM集群");
                 rpcClientInitializer.init(TxManagerHost.parserList(new ArrayList<>(hashSet)), false);
             }
         } catch (Exception e) {

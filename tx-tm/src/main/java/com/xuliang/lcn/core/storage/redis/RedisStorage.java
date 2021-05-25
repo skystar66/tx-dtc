@@ -70,7 +70,7 @@ public class RedisStorage implements FastStorage {
     @Override
     public void removeTMProperties(String host, int transactionPort) throws Exception {
         redisTemplate.opsForHash().delete(RedisKeyUtils.REDIS_TM_LIST, host + ":" + transactionPort);
-        log.info("removed TM {}:{}", host, transactionPort);
+        log.info("removed TM {}:{} success!!", host, transactionPort);
 
     }
 

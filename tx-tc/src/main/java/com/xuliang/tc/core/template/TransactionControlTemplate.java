@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 
 /**
  * Description: 事务控制器处理模板
@@ -56,7 +55,7 @@ public class TransactionControlTemplate {
                     groupId, unitId, transactionType);
             // 创建事务组消息
             lcnMessenger.createGroup(groupId);
-            log.info(groupId, unitId, "create group over");
+            log.info("create group over groupId: {}, unitId: {}",groupId, unitId);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -73,7 +72,7 @@ public class TransactionControlTemplate {
      */
     public void notifyGroup(String groupId, String unitId, String transactionType, int state) {
         log.info(
-                "groupId: {} unitId: {} notify group > transaction type: {}, state: {}.", groupId, unitId, transactionType, state);
+                "groupId: {} unitId: {} start notify group > transaction type: {}, state: {}.", groupId, unitId, transactionType, state);
 
         try {
             state = lcnMessenger.notifyGroup(groupId, state);
@@ -81,7 +80,7 @@ public class TransactionControlTemplate {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        log.info(groupId, unitId, "notify group exception state {}.", state);
+        log.info("notify group over groupId: {}, unitId: {},state: {}",groupId, unitId,state);
 
 
     }
@@ -107,7 +106,7 @@ public class TransactionControlTemplate {
         } catch (Exception e) {
             log.error("加入事务组出现异常:{}", e);
         }
-        log.info(groupId, unitId, "join group logic over");
+        log.info("join group over groupId: {}, unitId: {}",groupId, unitId);
 
 
     }

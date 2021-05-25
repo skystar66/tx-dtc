@@ -2,7 +2,7 @@ package com.xuliang.servicea;
 
 import com.xuliang.lcn.common.util.Transactions;
 import com.xuliang.tc.aspect.interceptor.TxLcnInterceptor;
-import com.xuliang.tc.aspect.weave.DTXLogicWeaver;
+import com.xuliang.tc.manager.TransactionManager;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -44,13 +44,13 @@ public class AopTypeDTXConfiguration {
     /**
      * 分布式事务配置 设置为LCN模式
      *
-     * @param dtxLogicWeaver
+     * @param transactionManager
      * @return
      */
-    @ConditionalOnBean(DTXLogicWeaver.class)
+    @ConditionalOnBean(TransactionManager.class)
     @Bean
-    public TxLcnInterceptor txLcnInterceptor(DTXLogicWeaver dtxLogicWeaver) {
-        TxLcnInterceptor txLcnInterceptor = new TxLcnInterceptor(dtxLogicWeaver);
+    public TxLcnInterceptor txLcnInterceptor(TransactionManager transactionManager) {
+        TxLcnInterceptor txLcnInterceptor = new TxLcnInterceptor(transactionManager);
         Properties properties = new Properties();
         properties.setProperty(Transactions.DTX_TYPE, "lcn");
         properties.setProperty(Transactions.DTX_PROPAGATION, "REQUIRED");

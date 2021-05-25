@@ -34,7 +34,7 @@ public class Tracings {
     public static void apply(TracingGetter tracingGetter) {
         String groupId = Optional.ofNullable(tracingGetter.get(TracingConstants.HEADER_KEY_GROUP_ID)).orElse("");
         String appList = Optional.ofNullable(tracingGetter.get(TracingConstants.HEADER_KEY_APP_MAP)).orElse("");
-        log.info("Tracings apply  call init method groupId : {}", groupId);
+        log.info("Tracings apply  call init method groupId : {}", StringUtils.isEmpty(groupId)?"null":groupId);
         TracingContext.init(Maps.newHashMap(TracingConstants.GROUP_ID, groupId, TracingConstants.APP_MAP,
                 StringUtils.isEmpty(appList) ? appList : new String(Base64Utils.decodeFromString(appList), StandardCharsets.UTF_8)));
         if (TracingContext.tracing().hasGroup()) {
@@ -50,7 +50,7 @@ public class Tracings {
      */
     public static void transmit(TracingSetter tracingSetter) {
         if (TracingContext.tracing().hasGroup()) {
-            log.info("tracing transmit group:{}", TracingContext.tracing().groupId());
+            log.info("tracing transmit groupId:{}", TracingContext.tracing().groupId());
             tracingSetter.set(TracingConstants.HEADER_KEY_GROUP_ID, TracingContext.tracing().groupId());
             tracingSetter.set(TracingConstants.HEADER_KEY_APP_MAP,
                     Base64Utils.encodeToString(TracingContext.tracing().appMapString().getBytes(StandardCharsets.UTF_8)));

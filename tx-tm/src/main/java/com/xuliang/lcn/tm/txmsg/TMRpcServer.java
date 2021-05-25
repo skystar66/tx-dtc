@@ -7,9 +7,11 @@ import com.xuliang.lcn.txmsg.RpcConfig;
 import com.xuliang.lcn.txmsg.RpcServerInitializer;
 import com.xuliang.lcn.txmsg.dto.ManagerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(1)
 public class TMRpcServer implements TxLcnInitializer {
 
 

@@ -16,7 +16,6 @@
         <module>tx-tc</module>
         <module>tx-tracing</module>
         <module>tx-demo</module>
-        <module>tx-com.xuliang.logger</module>
     </modules>
 
 
