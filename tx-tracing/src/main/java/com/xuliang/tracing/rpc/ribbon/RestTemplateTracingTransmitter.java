@@ -1,5 +1,6 @@
 package com.xuliang.tracing.rpc.ribbon;
 
+import com.xuliang.tracing.RpcTracingContext;
 import com.xuliang.tracing.Tracings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,9 @@ public class RestTemplateTracingTransmitter implements ClientHttpRequestIntercep
     @Override
     public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
         log.info("调用 ribbon 远程接口服务 ");
-        Tracings.transmit(httpRequest.getHeaders()::add);
+//        Tracings.transmit(httpRequest.getHeaders()::add);
+        RpcTracingContext.getInstance().build(httpRequest.getHeaders()::add);
+
         return clientHttpRequestExecution.execute(httpRequest, bytes);
     }
 }

@@ -3,7 +3,6 @@ package com.xuliang.servicec;
 import com.google.common.collect.Sets;
 import com.xuliang.common.db.domain.Demo;
 import com.xuliang.tc.annotation.LcnTransaction;
-import com.xuliang.tc.enums.DTXPropagation;
 import com.xuliang.tracing.TracingContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
-    @LcnTransaction(propagation = DTXPropagation.REQUIRED)
+    @LcnTransaction
     @Transactional
     public String rpc(String value) {
         Demo demo = new Demo();

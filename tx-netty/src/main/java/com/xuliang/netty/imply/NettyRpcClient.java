@@ -49,14 +49,12 @@ public class NettyRpcClient extends RpcClient {
 
     @Override
     public MessageDto request(String remoteKey, MessageDto msg, long timeout) throws Exception {
-        long startTime = System.currentTimeMillis();
         NettyRpcCmd nettyRpcCmd = new NettyRpcCmd();
         String key = nettyRpcCmd.randomKey();
         nettyRpcCmd.setKey(key);
         nettyRpcCmd.setRemoteKey(remoteKey);
         nettyRpcCmd.setMsg(msg);
         MessageDto result = request0(nettyRpcCmd, timeout);
-        log.info("cmd request used time: {} ms", System.currentTimeMillis() - startTime);
         return result;
     }
 

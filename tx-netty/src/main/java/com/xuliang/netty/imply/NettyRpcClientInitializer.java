@@ -75,7 +75,9 @@ public class NettyRpcClientInitializer implements RpcClientInitializer, Disposab
                     b.group(workerGroup);
                     b.channel(NioSocketChannel.class);
                     b.option(ChannelOption.SO_KEEPALIVE, true);
+                    b.option(ChannelOption.TCP_NODELAY,false);
                     b.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000);
+                    b.option(ChannelOption.SO_BACKLOG, 100);
                     b.handler(nettyRpcClientChannelInitializer);
                     return Optional.of(b.connect(socketAddress).syncUninterruptibly());
                 } catch (Exception ex) {
@@ -87,7 +89,7 @@ public class NettyRpcClientInitializer implements RpcClientInitializer, Disposab
                         ex2.printStackTrace();
                     }
                 }
-            }else {
+            } else {
                 log.info("Alread connect TM Server Address: {}", socketAddress.toString());
 
             }

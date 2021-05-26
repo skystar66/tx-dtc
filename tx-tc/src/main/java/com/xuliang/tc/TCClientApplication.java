@@ -10,5 +10,4 @@ public class TCClientApplication {
         SpringApplication.run(TCClientApplication.class, args);
     }
 
-
 }

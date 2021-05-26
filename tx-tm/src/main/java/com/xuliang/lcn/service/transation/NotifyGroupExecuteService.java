@@ -1,6 +1,5 @@
 package com.xuliang.lcn.service.transation;
 
-import com.xuliang.lcn.core.TransactionManager;
 import com.xuliang.lcn.core.manager.LCNTransactionManager;
 import com.xuliang.lcn.core.storage.FastStorage;
 import com.xuliang.lcn.server.TransactionCmd;
@@ -58,9 +57,11 @@ public class NotifyGroupExecuteService implements RpcExecuteService {
             return commitState;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            lcnTransactionManager.close(transactionCmd.getGroupId());
         }
+
+//        finally {
+//            lcnTransactionManager.close(transactionCmd.getGroupId());
+//        }
         return null;
     }
 }

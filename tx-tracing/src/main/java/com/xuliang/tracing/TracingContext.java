@@ -4,7 +4,7 @@ package com.xuliang.tracing;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xuliang.lcn.common.util.Maps;
-import com.xuliang.tracing.utils.SnowflakeIdWorker;
+import com.xuliang.lcn.common.util.SnowflakeIdWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 

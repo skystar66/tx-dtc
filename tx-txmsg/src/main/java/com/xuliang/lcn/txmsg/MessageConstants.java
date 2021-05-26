@@ -56,6 +56,11 @@ public class MessageConstants {
     public static final String ACTION_NOTIFY_GROUP = "notifyGroup";
 
     /**
+     * 清理事务组
+     */
+    public static final String ACTION_CLEAN_GROUP = "cleanGroup";
+
+    /**
      * 加入事务组
      */
     public static final String ACTION_JOIN_GROUP = "joinGroup";

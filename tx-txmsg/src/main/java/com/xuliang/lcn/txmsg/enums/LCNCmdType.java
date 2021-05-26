@@ -51,6 +51,12 @@ public enum LCNCmdType {
 
 
     /**
+     * 清理事务组
+     * 简写 clg
+     */
+    cleanGroup("clean-group", MessageConstants.ACTION_CLEAN_GROUP),
+
+    /**
      * 响应事务状态
      * 间写 ats
      */
@@ -105,6 +111,8 @@ public enum LCNCmdType {
                 return initClient;
             case MessageConstants.ACTION_QUERY_TM_CLUSTER:
                 return queryTMCluster;
+            case MessageConstants.ACTION_CLEAN_GROUP:
+                return cleanGroup;
 
             default:
                 throw new IllegalStateException("unsupported cmd.");

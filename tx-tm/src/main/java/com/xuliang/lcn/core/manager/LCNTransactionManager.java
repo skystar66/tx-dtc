@@ -79,17 +79,15 @@ public class LCNTransactionManager {
     private void notifyTransaction(String groupId, int transactionState) throws Exception {
         List<TransactionUnit> transactionUnits = fastStorage.findTransactionUnitsFromGroup(groupId);
         log.info("group[{}]'s transaction units: {}", groupId, transactionUnits);
-        for (TransactionUnit transactionUnit : transactionUnits) {
+        transactionUnits.stream().forEach(transactionUnit -> {
             NotifyUnitParams notifyUnitParams = new NotifyUnitParams();
             notifyUnitParams.setGroupId(groupId);
             notifyUnitParams.setState(transactionState);
             notifyUnitParams.setUnitId(transactionUnit.getUnitId());
             notifyUnitParams.setUnitType(transactionUnit.getUnitType());
-            log.info("groupId:{} notify TM's unit:{}",groupId,transactionUnit.getUnitId());
+            log.info("groupId:{} notify TM's unit:{}", groupId, transactionUnit.getUnitId());
             try {
                 //获取远程标识
-//                String remoteKey = rpcClient.loadRemoteKey();
-
                 List<String> modChannelKeys = rpcClient.remoteKeys(transactionUnit.getModId());
                 if (modChannelKeys.isEmpty()) {
                     // record exception
@@ -100,7 +98,7 @@ public class LCNTransactionManager {
                 MessageDto respMsg =
                         rpcClient.request(modChannelKeys.get(0), MessageCreator.notifyUnit(notifyUnitParams));
                 if (!MessageUtils.statusOk(respMsg)) {
-                    // 提交/回滚失败的消息处理 记录在本地数据库中 admin页面展示
+                    //todo 提交/回滚失败的消息处理 记录在本地数据库中 admin页面展示
                     //
                 }
             } catch (Exception e) {
@@ -108,6 +106,6 @@ public class LCNTransactionManager {
             } finally {
                 log.info(groupId, notifyUnitParams.getUnitId(), "notify unit over");
             }
-        }
+        });
     }
 }

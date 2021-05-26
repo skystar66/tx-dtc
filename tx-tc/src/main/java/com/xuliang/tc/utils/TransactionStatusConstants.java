@@ -36,8 +36,8 @@ public class TransactionStatusConstants {
 
 
     /**
-     * 近端缓存中，每个缓存写入多久后过期 10分钟
+     * 近端缓存中，每个缓存写入多久后过期 30分钟
      */
-    public static final int WRITE_AFTER_EXPIRE_TIME = 15 * 60 * 1000;
+    public static final int WRITE_AFTER_EXPIRE_TIME = 30 * 60 * 1000;
 
 }

@@ -82,10 +82,8 @@ public class SocketManager {
      */
     public MessageDto request(String key, RpcCmd cmd, long timeout) throws Exception {
         NettyRpcCmd nettyRpcCmd = (NettyRpcCmd) cmd;
-        log.info("get channel, key:{}", key);
         Channel channel = getChannel(key);
         channel.writeAndFlush(nettyRpcCmd);
-        log.info("await response key : {}",nettyRpcCmd.getKey());
         //阻塞结果
         if (timeout < 0) {
             //一直阻塞

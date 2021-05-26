@@ -1,6 +1,7 @@
 package com.xuliang.tracing.rpc.feign;
 
 
+import com.xuliang.tracing.RpcTracingContext;
 import com.xuliang.tracing.Tracings;
 import feign.Feign;
 import feign.RequestInterceptor;
@@ -27,6 +28,9 @@ public class FeignTracingTransmitter implements RequestInterceptor {
     public void apply(RequestTemplate requestTemplate) {
 
         log.info("调用 feign 远程接口服务 ");
-        Tracings.transmit(requestTemplate::header);
+//        Tracings.transmit(requestTemplate::header);
+        RpcTracingContext.getInstance().build(requestTemplate::header);
+
+
     }
 }

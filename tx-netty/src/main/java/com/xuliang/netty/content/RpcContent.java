@@ -54,7 +54,6 @@ public class RpcContent {
         try {
             lock.lock();
             try {
-                log.info("await time : {}",timeout);
                 condition.await(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -67,7 +66,6 @@ public class RpcContent {
     public void signal() {
         try {
             lock.lock();
-            log.info("收到服务端消息！！！进行通知 res : {}", getRes());
             condition.signal();
         } finally {
             lock.unlock();

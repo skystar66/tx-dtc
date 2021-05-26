@@ -7,18 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tx-netty" />
         <module name="tx-tm" />
         <module name="tx-tracing" />
-        <module name="tx-txmsg" />
         <module name="spring-c" />
         <module name="spring-b" />
         <module name="spring-a" />
         <module name="demo-common" />
-        <module name="tx-tc" />
         <module name="tx-common" />
-        <module name="tx-logger" />
         <module name="spring-eureka-demo" />
+        <module name="tx-tc" />
+        <module name="tx-netty" />
+        <module name="tx-logger" />
+        <module name="tx-txmsg" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,5 +1,6 @@
 package com.xuliang.servicea;
 
+import com.xuliang.tc.annotation.LcnTransaction;
 import com.xuliang.tracing.TracingContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
+    @LcnTransaction
     public String execute(String value, String exFlag) {
         // step1. call remote ServiceD
 //        String dResp = serviceBClient.rpc(value);

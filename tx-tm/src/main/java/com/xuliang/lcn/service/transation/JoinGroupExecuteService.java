@@ -5,6 +5,7 @@ import com.xuliang.lcn.core.storage.TransactionUnit;
 import com.xuliang.lcn.server.TransactionCmd;
 import com.xuliang.lcn.service.RpcExecuteService;
 import com.xuliang.lcn.txmsg.RpcClient;
+import com.xuliang.lcn.txmsg.enums.RpcResponseState;
 import com.xuliang.lcn.txmsg.params.JoinGroupParams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,6 @@ public class JoinGroupExecuteService implements RpcExecuteService {
         fastStorage.saveTransactionUnitToGroup(joinGroupParams.getGroupId(), transactionUnit);
         log.info(transactionCmd.getGroupId(), joinGroupParams.getUnitId(), "unit:{} success joined.",
                 joinGroupParams.getUnitId());
-        return null;
+        return RpcResponseState.success;
     }
 }

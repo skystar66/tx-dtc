@@ -41,7 +41,6 @@ public class NettyRpcCmd extends RpcCmd {
 
     public RpcContent loadRpcContent() {
         if (rpcContent == null) {
-            log.info("nettyRpcCmd rpcContent is null！");
             rpcContent = RpcCmdContext.getInstance().getKey(getKey());
         }
         return rpcContent;
@@ -51,10 +50,8 @@ public class NettyRpcCmd extends RpcCmd {
 
     public void await() {
         if (Objects.nonNull(rpcContent.getRes())) {
-            log.info("res 不为空 ，不进行await！！");
             return;
         }
-        log.info("进行await！！！！");
         rpcContent.await();
     }
 

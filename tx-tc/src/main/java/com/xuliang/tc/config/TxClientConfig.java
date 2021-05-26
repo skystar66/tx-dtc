@@ -49,6 +49,11 @@ public class TxClientConfig {
      */
     private int chainLevel = 3;
 
+    /**
+     * 请求发送消息的等待时间(单位:毫秒)
+     */
+    private int awaitTime = 1000;
+
     public void applyDtxTime(long dtxTime) {
         setDtxTime(dtxTime);
     }

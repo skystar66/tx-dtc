@@ -1,7 +1,7 @@
 package com.xuliang.tc.service;
 
 
-import com.xuliang.tc.client.TransactionCmd;
+import com.xuliang.tc.txmsg.TransactionCmd;
 
 import java.io.Serializable;
 

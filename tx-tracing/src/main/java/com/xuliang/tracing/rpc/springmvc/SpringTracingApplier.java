@@ -1,5 +1,6 @@
 package com.xuliang.tracing.rpc.springmvc;
 
+import com.xuliang.tracing.RpcTracingContext;
 import com.xuliang.tracing.Tracings;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -27,7 +28,9 @@ public class SpringTracingApplier implements HandlerInterceptor, WebMvcConfigure
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("springMvc 拦截器 preHandler");
-        Tracings.apply(request::getHeader);
+//        Tracings.apply(request::getHeader);
+        RpcTracingContext.getInstance().invoke(request::getHeader);
+
         return true;
     }
 

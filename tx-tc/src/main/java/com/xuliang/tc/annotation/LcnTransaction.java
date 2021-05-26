@@ -1,7 +1,8 @@
 package com.xuliang.tc.annotation;
 
 
-import com.xuliang.tc.enums.DTXPropagation;
+
+import com.xuliang.lcn.common.enums.TransactionPropagation;
 
 import java.lang.annotation.*;
 
@@ -22,9 +23,9 @@ public @interface LcnTransaction {
      * 分布式事务传播行为
      *
      * @return 传播行为
-     * @see DTXPropagation
+     * @see TransactionPropagation
      */
-    DTXPropagation propagation() default DTXPropagation.REQUIRED;
+    TransactionPropagation propagation() default TransactionPropagation.REQUIRED;
 
 
 }

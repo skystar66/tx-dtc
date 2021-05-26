@@ -22,10 +22,10 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * Description:
+ * Description:通知事务组
  * Date: 2018/12/5
  *
- * @author ujued
+ * @author xl
  */
 @AllArgsConstructor
 @NoArgsConstructor
