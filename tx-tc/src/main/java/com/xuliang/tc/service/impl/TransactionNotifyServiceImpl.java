@@ -37,17 +37,20 @@ public class TransactionNotifyServiceImpl implements RpcExecuteService {
     @Override
     public Serializable execute(TransactionCmd transactionCmd) throws Exception {
 
+        log.info("<----- callback notify transaction start group:{} ----->", transactionCmd.getMsg().getGroupId());
         NotifyUnitParams notifyUnitParams = transactionCmd.getMsg().loadBean(NotifyUnitParams.class);
         //事物执行操作
         transactionCommitorStrategy.commit(notifyUnitParams.getGroupId(),
                 notifyUnitParams.getUnitType(),
                 TransactionStatus.getTransactionStatus(notifyUnitParams.getState()));
         //清理异常检测
-        transactionChecking.stopDelayChecking(notifyUnitParams.getGroupId(),notifyUnitParams.getUnitId());
+        transactionChecking.stopDelayChecking(notifyUnitParams.getGroupId(), notifyUnitParams.getUnitId());
         //清理连接缓存
         TcCache.getInstance().cleanTransactionConnection(notifyUnitParams.getGroupId());
         //清理事物组
-        transactionMsgSenger.cleanGroup(notifyUnitParams.getGroupId(),notifyUnitParams.getState());
+        transactionMsgSenger.cleanGroup(notifyUnitParams.getGroupId(), notifyUnitParams.getState());
+        log.info("<----- callback notify transaction end group:{} ----->", transactionCmd.getMsg().getGroupId());
+
         return true;
     }
 }
