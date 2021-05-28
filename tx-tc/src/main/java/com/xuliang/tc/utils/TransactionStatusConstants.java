@@ -34,10 +34,15 @@ public class TransactionStatusConstants {
     public static final Short TXC_UNDO_ERROR = 4;
 
 
-
     /**
      * 近端缓存中，每个缓存写入多久后过期 30分钟
      */
     public static final int WRITE_AFTER_EXPIRE_TIME = 30 * 60 * 1000;
+
+
+    /**
+     * 缓存sql代理资源key前缀
+     */
+    public static final String SQL_CACHE_KEY_PREFIX = "sql_cache_prefix_";
 
 }

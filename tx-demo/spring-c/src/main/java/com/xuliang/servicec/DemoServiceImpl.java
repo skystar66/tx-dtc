@@ -2,6 +2,7 @@ package com.xuliang.servicec;
 
 import com.google.common.collect.Sets;
 import com.xuliang.common.db.domain.Demo;
+import com.xuliang.lcn.common.context.TransactionLocalContextThreadLocal;
 import com.xuliang.tc.annotation.LcnTransaction;
 import com.xuliang.tracing.TracingContext;
 import lombok.extern.slf4j.Slf4j;
@@ -39,11 +40,15 @@ public class DemoServiceImpl implements DemoService {
         Demo demo = new Demo();
         demo.setDemoField(value);
         demo.setCreateTime(new Date());
-        demo.setAppName("c");
-        demo.setGroupId(TracingContext.tracing().groupId());
+        demo.setAppName("transaction-C-model");
+        demo.setGroupId(TransactionLocalContextThreadLocal.current().getGroupId());
         demoMapper.save(demo);
         ids.putIfAbsent(TracingContext.tracing().groupId(), Sets.newHashSet(demo.getId()));
         ids.get(TracingContext.tracing().groupId()).add(demo.getId());
+        //故意抛出异常
+        if (true) {
+            throw new IllegalStateException("by exFlag");
+        }
         return "ok-service-c";
     }
 

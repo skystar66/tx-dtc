@@ -32,6 +32,11 @@ public class ConnectionProxy implements Connection {
      */
     public RpcResponseState commit(TransactionStatus state) {
         try {
+
+            if (isClosed()) {
+                return RpcResponseState.success;
+            }
+
             if (state == TransactionStatus.SUCCESS) {
                 log.info("commit transaction type[lcn] proxy connected!!");
                 connection.commit();

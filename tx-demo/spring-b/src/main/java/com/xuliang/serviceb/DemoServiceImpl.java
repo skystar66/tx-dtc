@@ -1,6 +1,7 @@
 package com.xuliang.serviceb;
 
 import com.xuliang.common.db.domain.Demo;
+import com.xuliang.lcn.common.context.TransactionLocalContextThreadLocal;
 import com.xuliang.tc.annotation.LcnTransaction;
 import com.xuliang.tracing.TracingContext;
 import lombok.extern.slf4j.Slf4j;
@@ -40,11 +41,15 @@ public class DemoServiceImpl implements DemoService {
 
 
         Demo demo = new Demo();
-        demo.setGroupId(TracingContext.tracing().groupId());
+        demo.setGroupId(TransactionLocalContextThreadLocal.current().getGroupId());
         demo.setDemoField(value);
-        demo.setAppName("aaa");
+        demo.setAppName("transaction-B-model");
         demo.setCreateTime(new Date());
         demoMapper.save(demo);
+        //故意抛出异常
+//        if (true) {
+//            throw new IllegalStateException("by exFlag");
+//        }
         return "ok-service-b";
     }
 }

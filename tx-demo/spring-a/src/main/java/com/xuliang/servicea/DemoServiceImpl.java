@@ -1,5 +1,6 @@
 package com.xuliang.servicea;
 
+import com.xuliang.lcn.common.context.TransactionLocalContextThreadLocal;
 import com.xuliang.tc.annotation.LcnTransaction;
 import com.xuliang.tracing.TracingContext;
 import lombok.extern.slf4j.Slf4j;
@@ -51,10 +52,10 @@ public class DemoServiceImpl implements DemoService {
         String eResp = serviceCClient.rpc(value);
         // step3. execute local transaction
         Demo demo = new Demo();
-        demo.setGroupId(TracingContext.tracing().groupId());
+        demo.setGroupId(TransactionLocalContextThreadLocal.current().getGroupId());
         demo.setDemoField(value);
         demo.setCreateTime(new Date());
-        demo.setAppName("");
+        demo.setAppName("transaction-A-model");
         demoMapper.save(demo);
         // 置异常标志，DTX 回滚
         if (Objects.nonNull(exFlag)) {

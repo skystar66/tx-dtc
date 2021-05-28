@@ -48,7 +48,7 @@ public class TcCache {
      */
     public ConnectionProxy getTransactionSqlConnection(String groupId) throws Exception {
         Object cacheObj = tcCache.getIfPresent(
-                groupId
+                TransactionStatusConstants.SQL_CACHE_KEY_PREFIX + groupId
         );
         if (cacheObj != null) {
             return (ConnectionProxy) cacheObj;
@@ -61,14 +61,14 @@ public class TcCache {
      */
 
     public void setTransactionSqlConnection(String groupId, ConnectionProxy connectionProxy) {
-        tcCache.put(groupId, connectionProxy);
+        tcCache.put(TransactionStatusConstants.SQL_CACHE_KEY_PREFIX + groupId, connectionProxy);
     }
 
     /**
      * 清理sql代理资源
      */
     public void cleanTransactionConnection(String groupId) {
-        tcCache.invalidate(groupId);
+        tcCache.invalidate(TransactionStatusConstants.SQL_CACHE_KEY_PREFIX + groupId);
     }
 
 

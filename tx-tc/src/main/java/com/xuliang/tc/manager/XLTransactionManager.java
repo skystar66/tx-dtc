@@ -23,9 +23,14 @@ public class XLTransactionManager {
 
     @Autowired
     TransactionServiceExecutor transactionServiceExecutor;
+
     /**
-     * 执行事务
-     */
+     * @Description: 执行事务
+     * @Param: [business]
+     * @return: java.lang.Object
+     * @Author: xl
+     * @Date: 2021/5/27
+     **/
     public Object runTransaction(BusinessCallback business) throws Throwable {
 
         log.info("<----- run transaction start ----->");
@@ -35,7 +40,7 @@ public class XLTransactionManager {
         if (transactionLocalContext == null) {
             transactionLocalContext = TransactionLocalContextThreadLocal.getNewTransacationContext();
         }
-        //设置同一事物类型 //todo 先写LCN
+        //设置同一事物类型 //todo 先写 XL
         transactionLocalContext.setTransactionType(TransactionType.LCN.getType());
         Object res = null;
         try {
@@ -48,6 +53,7 @@ public class XLTransactionManager {
         } catch (Exception e) {
             //设置事物状态为0，标识失败
             transactionLocalContext.setSysTransactionState(TransactionStatus.FAIL);
+            log.error("ex:{}", e);
             throw e;
         } finally {
             //结束事物
